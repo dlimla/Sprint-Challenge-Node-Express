@@ -94,7 +94,7 @@ router.put('/:id', async (req, res) => {
 
 })
 
-router.get('/api/projects/:id/actions', (req, res) => {
+router.get('/:id/action', (req, res) => {
     const { id } = req.params;
     Project.getProjectActions(id)
       .then(allActions => {
