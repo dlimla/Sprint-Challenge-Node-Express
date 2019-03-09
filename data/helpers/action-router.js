@@ -103,6 +103,13 @@ router.put('/:id', async(req,res)=> {
             message: "ERROR could not update the action"
         })
     }
-
 })
+
+router.get('/', async(req.res) => {
+    let { id } = req.params;
+    try {
+        const action = await Action.getProjectActions
+    }
+})
+
 module.exports = router;
