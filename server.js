@@ -2,8 +2,8 @@ const express = require('express');
 const logger = require('morgan');
 const helmet = require('helmet');
 
-const actionRouter = require('./data/helpers/actionModel.js');
-const projectRouter = require('./data/helpers/projectModel.js');
+const actionRouter = require('./data/helpers/action-router.js');
+const projectRouter = require('./data/helpers/project-router.js');
 
 const server = express();
 const parser = express.json();
@@ -12,13 +12,11 @@ const securityMiddleware = helmet();
 
 server.use(parser, logMiddleware, securityMiddleware);
 
-server.use('/api/user', actionRouter);
-server.use('/api/post', projectRouter);
+server.use('/api/action', actionRouter);
+server.use('/api/project', projectRouter);
 
 server.get('/', (req, res) => {
-  res.send(`
-    <h2>Lambda Blog</h2>
-    `);
+    res.send('<h2>Lambda Sprint Node</h2>')
 });
 
 server.use((err, req, res, next) => {
