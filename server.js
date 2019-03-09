@@ -8,24 +8,24 @@ const projectRouter = require('./data/helpers/projectModel.js');
 const server = express();
 const parser = express.json();
 const logMiddleware = logger('dev');
-const secruityMiddleware = helmet();
+const securityMiddleware = helmet();
 
-server.use(parser, logMiddleware, secruityMiddleware);
+server.use(parser, logMiddleware, securityMiddleware);
 
-server.use('/api/action', actionRouter);
-server.use('/api/project', projectRouter);
+server.use('/api/user', actionRouter);
+server.use('/api/post', projectRouter);
 
 server.get('/', (req, res) => {
-    res.send(`
-    <h2>Lambda Sprint Node Challenge</h2>
+  res.send(`
+    <h2>Lambda Blog</h2>
     `);
-})
+});
 
 server.use((err, req, res, next) => {
-    res.status(400).json({
-        message:"ERROR thrown in server",
-        err: err
-    })
+  res.status(400).json({
+    message: "error thrown in server",
+    err: err
+  })
 })
 
 module.exports = server;
